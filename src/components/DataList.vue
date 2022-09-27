@@ -56,8 +56,9 @@ export default {
   border-collapse: collapse;
   border-radius: 5px 5px 0 0;
   overflow: hidden;
-  font-size: 1.5em;
+  font-size: calc(0.75em + 1vmin);
   text-align: left;
+  table-layout: fixed;
   &-head__tr {
     letter-spacing: 1px;
     font-weight: bold;
@@ -83,6 +84,54 @@ export default {
 .item-list-leave-to {
   opacity: 0;
   transform: translateX(30px);
+}
+
+@media (max-width: 767px) {
+  .table-head__th {
+    padding: 5px;
+  }
+
+}
+
+@media (max-width: 500px) {
+  .table caption {
+    font-size: 1.3em;
+  }
+
+  .table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+  .table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+  }
+
+  .table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: 13px;
+    text-align: right;
+  }
+
+  .table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .table td:last-child {
+    border-bottom: 0;
+  }
 }
 
 </style>

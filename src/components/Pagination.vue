@@ -39,6 +39,9 @@ export default {
   margin-left: 7px;
 }
 .page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: transparent;
   border: 2px solid teal;
   border-radius: 50%;
@@ -54,5 +57,17 @@ export default {
   border: 2px solid #009879;
   background: #009879;
   color: white;
+}
+@media (max-width: 500px) {
+  .page {
+    width: 25px;
+    height: 25px;
+  }
+  .pages__wrapper {
+    margin: 10px auto;
+  }
+  .page + .page {
+    margin-left: 4px;
+  }
 }
 </style>

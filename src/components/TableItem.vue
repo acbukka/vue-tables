@@ -1,9 +1,9 @@
 <template>
   <tr class="table-item">
-    <td class="table-item-date table-item__field"> {{ tableItem.id }} </td>
-    <td class="table-item-name table-item__field"> {{ tableItem.title }} </td>
-    <td class="table-item-count table-item__field"> {{ tableItem.stock }} </td>
-    <td class="table-item-distance table-item__field"> {{ tableItem.rating }} </td>
+    <td class="table-item__date table-item__field"> {{ tableItem.id }} </td>
+    <td class="table-item__name table-item__field"> {{ tableItem.title }} </td>
+    <td class="table-item__count table-item__field"> {{ tableItem.stock }} </td>
+    <td class="table-item__distance table-item__field"> {{ tableItem.rating }} </td>
   </tr>
 </template>
 
@@ -35,6 +35,15 @@ export default {
   }
   &:hover {
     color: #009879;
+  }
+}
+
+@media (max-width: 500px) {
+  .table-item__field {
+    padding: 5px;
+  }
+  .table-item__name {
+    width: 100%;
   }
 }
 

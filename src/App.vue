@@ -201,4 +201,16 @@ export default {
   display: flex;
 }
 
+@media (max-width: 840px) {
+  .app {
+    &__inner {
+      width: 100%;
+    }
+  }
+}
+@media (max-width: 767px) {
+  .condition__select {
+    display: block;
+  }
+}
 </style>

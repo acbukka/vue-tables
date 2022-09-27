@@ -45,4 +45,10 @@ export default {
     margin-right: 5px;
   }
 }
+
+@media (max-width: 767px) {
+  .input__title {
+    margin-left: 0;
+  }
+}
 </style>
