@@ -27,6 +27,12 @@
       <data-list
         :columns="options.columns"
         :tableItems="filteredItems"
+        :isItemsLoading="isItemsLoading"
+      />
+      <pagination
+        :pages="totalPages"
+        :page="page"
+        @updatePage="changePage"
       />
     </div>
   </div>
@@ -34,20 +40,20 @@
 
 <script>
 import DataList from "@/components/DataList";
-import MySelect from "@/components/UI/MySelect";
+import Pagination from "@/components/Pagination";
 import axios from "axios";
 
 export default {
   name: 'App',
   components: {
-    MySelect,
-    DataList
+    DataList,
+    Pagination
   },
   data() {
     return {
       tableItems: [],
       isItemsLoading: false,
-      page: 0,
+      page: 1,
       limit: 10,
       totalPages: 0,
       selectedColumn: 'Дата',
@@ -85,7 +91,7 @@ export default {
             case 'Расстояние':
               return this.filterNumbers('Равно', 'rating')
           }
-          break
+          break;
         case 'Больше':
           switch (this.selectedColumn) {
             case 'Дата':
@@ -97,7 +103,7 @@ export default {
             case 'Расстояние':
               return this.filterNumbers('Больше', 'rating')
           }
-          break
+          break;
         case 'Меньше':
           switch (this.selectedColumn) {
             case 'Дата':
@@ -109,7 +115,7 @@ export default {
             case 'Расстояние':
               return this.filterNumbers('Меньше', 'rating')
           }
-          break
+          break;
       }
     },
   },
@@ -131,7 +137,7 @@ export default {
           } else {
             return this.tableItems.filter(item => item);
           }
-        case 'Маньше':
+        case 'Меньше':
           if (this.searchQuery) {
             return this.tableItems.filter(item => item[column] < Number(this.searchQuery))
           } else {
@@ -148,20 +154,25 @@ export default {
     },
     async fetchItems () {
       try {
+        this.isItemsLoading = true;
         const response = await axios.get('https://dummyjson.com/products', {
           params: {
-            skip: this.page * 10,
+            skip: this.page === 1 ? 0 : this.page * 10,
             limit: this.limit
           }
         });
         this.tableItems = response.data.products;
-        this.totalPages = response.data.total / 10;
+        this.totalPages = response.data.total / 10 - 1;
       } catch (err) {
         alert('Ошибка');
       } finally {
-
+        this.isItemsLoading = false;
       }
     },
+    changePage(page) {
+      this.page = page;
+      this.fetchItems();
+    }
   },
   mounted() {
     this.fetchItems()
@@ -183,7 +194,7 @@ export default {
 }
 
 .data-params {
-  margin: 50px 0;
+  margin: 20px 0;
 }
 
 .condition__select {

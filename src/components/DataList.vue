@@ -11,13 +11,18 @@
         </th>
       </tr>
     </thead>
-    <tbody>
-      <table-item
-        v-for="tableItem in tableItems"
-        :tableItem="tableItem"
-        :key="tableItem.id"
-      />
-    </tbody>
+    <transition name="component-fade" mode="out-in">
+      <tbody>
+        <transition-group name="item-list" v-if="!isItemsLoading">
+          <table-item
+            v-for="tableItem in tableItems"
+            :tableItem="tableItem"
+            :key="tableItem.id"
+          />
+        </transition-group>
+        <div v-else>Идет загрузка...</div>
+      </tbody>
+    </transition>
   </table>
 </template>
 
@@ -33,24 +38,15 @@ export default {
     tableItems: {
       type: Array,
       required: true
-    }
-  },
-  data() {
-    return {
-      // tableItems: [],
-      // isPostsLoading: false,
-      // page: 0,
-      // limit: 10,
-      // totalPages: 0,
+    },
+    isItemsLoading: {
+      type: Boolean,
+      required: true
     }
   },
   components: {
     TableItem
   },
-  methods: {
-
-  },
-
 }
 </script>
 
@@ -72,4 +68,21 @@ export default {
     padding: 10px;
   }
 }
+
+.item-list-item {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.item-list-enter-active,
+.item-list-leave-active {
+  transition: all 0.4s ease;
+}
+
+.item-list-enter-from,
+.item-list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
 </style>
