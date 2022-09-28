@@ -1,5 +1,3 @@
-# vue-tables
-
 ## deploy: https://acbukka.github.io/vue-tables/
 
 ***Примечания:***
