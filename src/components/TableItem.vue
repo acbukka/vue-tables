@@ -31,7 +31,6 @@ export default {
     border-bottom: 3px solid #009879;
   }
   &__field {
-    //white-space:nowrap;
     padding: 10px;
   }
   &:hover {

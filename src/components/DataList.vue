@@ -94,9 +94,6 @@ export default {
 }
 
 @media (max-width: 500px) {
-  .table caption {
-    font-size: 1.3em;
-  }
 
   .table thead {
     border: none;
@@ -109,29 +106,12 @@ export default {
     width: 1px;
   }
 
-  .table tr {
+  .table-head__tr {
     border-bottom: 3px solid #ddd;
     display: block;
     margin-bottom: .625em;
   }
 
-  .table td {
-    border-bottom: 1px solid #ddd;
-    display: block;
-    font-size: 13px;
-    text-align: right;
-  }
-
-  .table td::before {
-    content: attr(data-label);
-    float: left;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-
-  .table td:last-child {
-    border-bottom: 0;
-  }
 }
 
 </style>
