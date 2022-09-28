@@ -58,7 +58,7 @@ export default {
   overflow: hidden;
   font-size: calc(0.75em + 1vmin);
   text-align: left;
-  table-layout: fixed;
+  table-layout: auto;
   &-head__tr {
     letter-spacing: 1px;
     font-weight: bold;
